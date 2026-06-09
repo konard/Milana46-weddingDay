@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Эмблема Автоботов">
+  <!-- Autobot insignia (stylised homage) — heroic robotic faceplate -->
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M120 22 L134 38 L134 54 L176 54 L176 70 L150 82 L168 108 L150 124 L156 152 L120 208
+    L84 152 L90 124 L72 108 L90 82 L64 70 L64 54 L106 54 L106 38 Z
+    M92 92 L116 86 L114 104 L90 98 Z
+    M148 92 L124 86 L126 104 L150 98 Z
+  "/>
+  <path fill="currentColor" opacity="0.85" d="M120 116 L131 132 L120 152 L109 132 Z"/>
+</svg>

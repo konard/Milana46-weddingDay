@@ -21,6 +21,18 @@
   --steel-dim:  #6878a0;
   --red-accent: #cc2200;
   --white:      #ffffff;
+
+  /* ── Faction colours ── */
+  --auto-red:    #e01e2b;
+  --auto-blue:   #1565ff;
+  --auto-light:  #7fb2ff;
+  --auto-chrome: #c8d2e0;
+  --decep-purple:#9b30ff;
+  --decep-violet:#5b1e9c;
+  --decep-magenta:#d000ff;
+  --decep-steel: #9aa3b2;
+  --glow-auto:   0 0 16px rgba(21,101,255,0.6), 0 0 38px rgba(224,30,43,0.3);
+  --glow-decep:  0 0 16px rgba(155,48,255,0.6), 0 0 38px rgba(208,0,255,0.3);
   --line-gold:  rgba(240,165,0,0.35);
   --line-blue:  rgba(0,200,255,0.25);
   --glow-gold:  0 0 18px rgba(240,165,0,0.55), 0 0 40px rgba(240,165,0,0.22);
@@ -193,6 +205,42 @@ body::before {
   pointer-events: none;
 }
 
+/* ── Faction emblems (shared) ── */
+.faction-emblem {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.faction-emblem--auto  { color: var(--auto-blue);    filter: drop-shadow(0 0 8px rgba(21,101,255,0.65)); }
+.faction-emblem--decep { color: var(--decep-purple); filter: drop-shadow(0 0 8px rgba(155,48,255,0.65)); }
+
+/* Dual faction badges in hero */
+.hero__factions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 5vw, 24px);
+  margin-bottom: clamp(12px, 3.5vw, 18px);
+}
+.hero__factions .faction-emblem {
+  width: clamp(40px, 13vw, 58px);
+  height: clamp(40px, 13vw, 58px);
+  animation: emblem-float 5s ease-in-out infinite;
+}
+.hero__factions .faction-emblem--decep { animation-delay: -2.5s; }
+.hero__vs {
+  font-family: var(--font-display);
+  font-size: clamp(13px, 4vw, 18px);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-shadow: var(--glow-gold);
+}
+@keyframes emblem-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
 .hero__subtitle {
   font-family: var(--font-display);
   font-size: clamp(7px, 1.9vw, 9px);
@@ -219,11 +267,11 @@ body::before {
 .hero__title::after {
   content: '';
   display: block;
-  width: 60%;
+  width: 70%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent, var(--auto-red) 20%, var(--auto-blue) 40%, var(--gold) 50%, var(--decep-magenta) 60%, var(--decep-purple) 80%, transparent);
   margin: 8px auto 0;
-  box-shadow: var(--glow-gold);
+  box-shadow: 0 0 12px rgba(240,165,0,0.4);
 }
 
 /* ── INVITATION ── */
@@ -325,6 +373,12 @@ body::before {
   background: linear-gradient(to bottom, transparent, var(--energon), transparent);
   align-self: stretch;
   box-shadow: var(--glow-blue);
+}
+
+.schedule__badge {
+  width: clamp(30px, 9vw, 40px);
+  height: clamp(30px, 9vw, 40px);
+  margin-bottom: clamp(8px, 2.5vw, 12px);
 }
 
 .schedule__event {
@@ -529,6 +583,187 @@ body::before {
 .palette__swatch:hover {
   transform: scale(1.12);
   box-shadow: 0 0 10px var(--color);
+}
+
+/* ── FACTIONS section ── */
+.factions {
+  background: var(--bg-panel);
+  padding: var(--pad-y) var(--pad-x);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line-gold);
+}
+
+/* Split-faction backdrop glow */
+.factions::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 40%, rgba(21,101,255,0.12), transparent 42%),
+    radial-gradient(circle at 82% 40%, rgba(155,48,255,0.12), transparent 42%);
+  pointer-events: none;
+}
+
+.factions .section-title { margin-bottom: clamp(8px, 2.5vw, 12px); }
+
+.factions__intro {
+  position: relative;
+  font-size: clamp(11px, 3vw, 13px);
+  color: var(--steel-dim);
+  max-width: 34ch;
+  margin: 0 auto clamp(20px, 5vw, 28px);
+  line-height: 1.6;
+}
+
+.factions__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 3vw, 16px);
+}
+
+.faction {
+  border: 1px solid;
+  background: rgba(10,10,20,0.6);
+  padding: clamp(16px, 4.5vw, 22px) clamp(8px, 3vw, 14px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.faction--auto  { border-color: rgba(21,101,255,0.5);  box-shadow: inset 0 0 24px rgba(21,101,255,0.08); }
+.faction--decep { border-color: rgba(155,48,255,0.5);  box-shadow: inset 0 0 24px rgba(155,48,255,0.08); }
+.faction--auto:hover  { transform: translateY(-3px); box-shadow: var(--glow-auto),  inset 0 0 24px rgba(21,101,255,0.12); }
+.faction--decep:hover { transform: translateY(-3px); box-shadow: var(--glow-decep), inset 0 0 24px rgba(155,48,255,0.12); }
+
+.faction__emblem {
+  width: clamp(56px, 18vw, 78px);
+  height: clamp(56px, 18vw, 78px);
+  margin-bottom: clamp(8px, 2.5vw, 12px);
+}
+
+.faction__name {
+  font-family: var(--font-display);
+  font-size: clamp(11px, 3vw, 14px);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.faction--auto  .faction__name { color: var(--auto-light);   text-shadow: var(--glow-auto); }
+.faction--decep .faction__name { color: var(--decep-purple); text-shadow: var(--glow-decep); }
+
+.faction__role {
+  font-family: var(--font-display);
+  font-size: clamp(7px, 2vw, 9px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel-dim);
+  margin: clamp(4px, 1.5vw, 7px) 0 clamp(8px, 2.5vw, 12px);
+}
+
+.faction__motto {
+  font-size: clamp(10px, 2.8vw, 12px);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--steel);
+  min-height: 3.2em;
+  margin-bottom: clamp(10px, 3vw, 14px);
+}
+
+.faction__palette {
+  display: flex;
+  gap: clamp(4px, 1.5vw, 6px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.chip {
+  width: clamp(15px, 4.5vw, 20px);
+  height: clamp(15px, 4.5vw, 20px);
+  background: var(--c);
+  clip-path: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.chip:hover { transform: scale(1.15); box-shadow: 0 0 8px var(--c); }
+
+.factions__treaty {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(7px, 2vw, 9px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: var(--glow-gold);
+  margin-top: clamp(18px, 5vw, 26px);
+  animation: energon-flicker 7s ease-in-out infinite;
+}
+
+/* ── DRESS CODE faction palette groups ── */
+.dresscode__factions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 3vw, 16px);
+  margin-bottom: clamp(18px, 5vw, 26px);
+}
+
+.palette-group {
+  border: 1px solid;
+  padding: clamp(10px, 3vw, 14px) clamp(8px, 2.5vw, 12px);
+  background: rgba(10,10,20,0.6);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+.palette-group--auto  { border-color: rgba(21,101,255,0.45); }
+.palette-group--decep { border-color: rgba(155,48,255,0.45); }
+
+.palette-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: clamp(8px, 2.5vw, 12px);
+}
+.palette-group__icon { width: 22px; height: 22px; flex-shrink: 0; }
+.palette-group__name {
+  font-family: var(--font-display);
+  font-size: clamp(8px, 2.2vw, 10px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.palette-group--auto  .palette-group__name { color: var(--auto-light); }
+.palette-group--decep .palette-group__name { color: var(--decep-purple); }
+
+.palette--faction {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(5px, 1.8vw, 8px);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  clip-path: none;
+}
+
+.palette-base__label {
+  font-family: var(--font-display);
+  font-size: clamp(7px, 1.9vw, 9px);
+  letter-spacing: 0.16em;
+  color: var(--steel-dim);
+  margin-bottom: clamp(8px, 2.5vw, 12px);
+}
+
+.palette--base {
+  grid-template-columns: repeat(10, 1fr);
+  width: 100%;
+  gap: clamp(3px, 1.2vw, 6px);
+  padding: clamp(8px, 2.5vw, 12px);
+  background: rgba(10,10,20,0.5);
+  border: 1px solid rgba(200,196,188,0.15);
+  box-shadow: none;
+  opacity: 0.85;
 }
 
 /* ── WISHES ── */

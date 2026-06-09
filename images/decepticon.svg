@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Эмблема Десептиконов">
+  <!-- Decepticon insignia (stylised homage) — sharp predatory faceplate -->
+  <path fill="currentColor" fill-rule="evenodd" d="
+    M120 12 L140 52 L192 38 L164 84 L156 128 L120 216
+    L84 128 L76 84 L48 38 L100 52 Z
+    M96 88 L120 82 L114 106 L92 108 Z
+    M144 88 L120 82 L126 106 L148 108 Z
+  "/>
+  <path fill="currentColor" opacity="0.85" d="M120 118 L131 136 L120 162 L109 136 Z"/>
+</svg>

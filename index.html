@@ -11,17 +11,39 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- ── Reusable faction insignia (stylised homage) ── -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false">
+    <symbol id="ic-autobot" viewBox="0 0 240 240">
+      <path fill="currentColor" fill-rule="evenodd" d="M120 22 L134 38 L134 54 L176 54 L176 70 L150 82 L168 108 L150 124 L156 152 L120 208 L84 152 L90 124 L72 108 L90 82 L64 70 L64 54 L106 54 L106 38 Z M92 92 L116 86 L114 104 L90 98 Z M148 92 L124 86 L126 104 L150 98 Z"/>
+      <path fill="currentColor" opacity="0.85" d="M120 116 L131 132 L120 152 L109 132 Z"/>
+    </symbol>
+    <symbol id="ic-decepticon" viewBox="0 0 240 240">
+      <path fill="currentColor" fill-rule="evenodd" d="M120 12 L140 52 L192 38 L164 84 L156 128 L120 216 L84 128 L76 84 L48 38 L100 52 Z M96 88 L120 82 L114 106 L92 108 Z M144 88 L120 82 L126 106 L148 108 Z"/>
+      <path fill="currentColor" opacity="0.85" d="M120 118 L131 136 L120 162 L109 136 Z"/>
+    </symbol>
+  </svg>
+
   <main class="page">
 
     <!-- Hero -->
     <section class="hero">
       <img src="images/1.png" alt="Жених и невеста" class="hero__couple" decoding="async" fetchpriority="high">
       <img src="images/image 9 (2).png" alt="" class="hero__fabric" aria-hidden="true" decoding="async" fetchpriority="high">
+
       <div class="hero__text">
         <p class="hero__subtitle">▸ MISSION: WEDDING PROTOCOL ◂</p>
+
+        <div class="hero__factions" aria-hidden="true">
+          <svg class="faction-emblem faction-emblem--auto"><use href="#ic-autobot"/></svg>
+          <span class="hero__vs">VS</span>
+          <svg class="faction-emblem faction-emblem--decep"><use href="#ic-decepticon"/></svg>
+        </div>
+
         <h1 class="hero__title">КОНСТАНТИН &amp; МИХАЛИНА</h1>
-        <p class="hud-tag">// AUTOBOTS: ROLL OUT //</p>
+        <p class="hud-tag">// ALLIANCE OF AUTOBOTS &amp; DECEPTICONS //</p>
       </div>
+
       <span class="tf-bracket tf-bracket--tl"></span>
       <span class="tf-bracket tf-bracket--tr"></span>
       <span class="tf-bracket tf-bracket--bl"></span>
@@ -43,6 +65,7 @@
 
       <div class="schedule">
         <div class="schedule__col">
+          <svg class="schedule__badge faction-emblem--auto"><use href="#ic-autobot"/></svg>
           <h4 class="schedule__event">СЕМЕЙНОЕ ЗАСТОЛЬЕ</h4>
           <p class="schedule__date">16.08.2024</p>
           <p class="schedule__time">ЗАГС 12:00</p>
@@ -51,6 +74,7 @@
         </div>
         <div class="schedule__divider" aria-hidden="true"></div>
         <div class="schedule__col">
+          <svg class="schedule__badge faction-emblem--decep"><use href="#ic-decepticon"/></svg>
           <h4 class="schedule__event">ПРОГУЛКА С ДРУЗЬЯМИ</h4>
           <p class="schedule__date">17.08.2024</p>
           <p class="schedule__banquet">ПИКНИК 13:00</p>
@@ -58,6 +82,44 @@
       </div>
 
       <img src="images/3 (2).png" alt="" class="invitation__deco invitation__deco--bottom" aria-hidden="true">
+    </section>
+
+    <!-- Factions -->
+    <section class="factions">
+      <h2 class="section-title">ВЫБЕРИ СВОЮ СТОРОНУ</h2>
+      <p class="factions__intro">Две легендарные фракции впервые заключают союз. Чью сторону примешь ты?</p>
+
+      <div class="factions__grid">
+        <article class="faction faction--auto">
+          <svg class="faction__emblem faction-emblem--auto"><use href="#ic-autobot"/></svg>
+          <h3 class="faction__name">АВТОБОТЫ</h3>
+          <p class="faction__role">Сторона жениха</p>
+          <p class="faction__motto">«Свобода — право всех разумных существ»</p>
+          <div class="faction__palette">
+            <span class="chip" style="--c:#e01e2b" title="Autobot Red"></span>
+            <span class="chip" style="--c:#1565ff" title="Optimus Blue"></span>
+            <span class="chip" style="--c:#7fb2ff" title="Energon Blue"></span>
+            <span class="chip" style="--c:#c8d2e0" title="Chrome"></span>
+            <span class="chip" style="--c:#f0a500" title="Energon Gold"></span>
+          </div>
+        </article>
+
+        <article class="faction faction--decep">
+          <svg class="faction__emblem faction-emblem--decep"><use href="#ic-decepticon"/></svg>
+          <h3 class="faction__name">ДЕСЕПТИКОНЫ</h3>
+          <p class="faction__role">Сторона невесты</p>
+          <p class="faction__motto">«Мир через тиранию»</p>
+          <div class="faction__palette">
+            <span class="chip" style="--c:#9b30ff" title="Decepticon Purple"></span>
+            <span class="chip" style="--c:#5b1e9c" title="Dark Violet"></span>
+            <span class="chip" style="--c:#d000ff" title="Plasma Magenta"></span>
+            <span class="chip" style="--c:#3a3f4a" title="Gunmetal"></span>
+            <span class="chip" style="--c:#9aa3b2" title="Titanium"></span>
+          </div>
+        </article>
+      </div>
+
+      <p class="factions__treaty">// МИРНЫЙ ДОГОВОР ПОДПИСАН — СОЮЗ ЗАКЛЮЧЁН //</p>
     </section>
 
     <!-- Venue -->
@@ -91,25 +153,53 @@
       <img src="images/5.png" alt="" class="dresscode__illustration" aria-hidden="true">
 
       <p class="dresscode__text">
-        Мы будем рады, если при выборе своего наряда вы поддержите цветовую гамму нашего торжества.
+        Выбери фракцию и поддержи её цветовую гамму. А для тех, кто хранит нейтралитет, — базовая палитра торжества.
       </p>
 
-      <div class="palette">
+      <div class="dresscode__factions">
+        <div class="palette-group palette-group--auto">
+          <div class="palette-group__head">
+            <svg class="palette-group__icon faction-emblem--auto"><use href="#ic-autobot"/></svg>
+            <span class="palette-group__name">АВТОБОТЫ</span>
+          </div>
+          <div class="palette palette--faction">
+            <span class="palette__swatch" style="--color:#e01e2b"></span>
+            <span class="palette__swatch" style="--color:#c1121f"></span>
+            <span class="palette__swatch" style="--color:#1565ff"></span>
+            <span class="palette__swatch" style="--color:#7fb2ff"></span>
+            <span class="palette__swatch" style="--color:#c8d2e0"></span>
+            <span class="palette__swatch" style="--color:#f0a500"></span>
+          </div>
+        </div>
+
+        <div class="palette-group palette-group--decep">
+          <div class="palette-group__head">
+            <svg class="palette-group__icon faction-emblem--decep"><use href="#ic-decepticon"/></svg>
+            <span class="palette-group__name">ДЕСЕПТИКОНЫ</span>
+          </div>
+          <div class="palette palette--faction">
+            <span class="palette__swatch" style="--color:#9b30ff"></span>
+            <span class="palette__swatch" style="--color:#5b1e9c"></span>
+            <span class="palette__swatch" style="--color:#d000ff"></span>
+            <span class="palette__swatch" style="--color:#3a3f4a"></span>
+            <span class="palette__swatch" style="--color:#1b1d26"></span>
+            <span class="palette__swatch" style="--color:#9aa3b2"></span>
+          </div>
+        </div>
+      </div>
+
+      <p class="palette-base__label">// НЕЙТРАЛЬНАЯ ГАММА //</p>
+      <div class="palette palette--base">
         <span class="palette__swatch" style="--color: #F3EDE4"></span>
         <span class="palette__swatch" style="--color: #E8C8C4"></span>
         <span class="palette__swatch" style="--color: #C4A0A0"></span>
         <span class="palette__swatch" style="--color: #A8B8A0"></span>
         <span class="palette__swatch" style="--color: #8A9A78"></span>
-        <span class="palette__swatch" style="--color: #F0ECE4"></span>
         <span class="palette__swatch" style="--color: #C8C4BC"></span>
         <span class="palette__swatch" style="--color: #A89E90"></span>
         <span class="palette__swatch" style="--color: #8A7E70"></span>
         <span class="palette__swatch" style="--color: #5C5854"></span>
         <span class="palette__swatch" style="--color: #4A3828"></span>
-        <span class="palette__swatch" style="--color: #7A6A58"></span>
-        <span class="palette__swatch" style="--color: #C0CCC0"></span>
-        <span class="palette__swatch" style="--color: #E4DCC8"></span>
-        <span class="palette__swatch" style="--color: #D8CEC0"></span>
       </div>
     </section>
 
